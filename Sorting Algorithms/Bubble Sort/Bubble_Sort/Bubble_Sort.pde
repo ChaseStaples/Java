@@ -17,7 +17,6 @@ void draw(){
       for (int j = 0; j < values.length-i-1; j++){
            
            float x = values[j]; //First Value
-           stroke(0,255,0);
            float y = values[j + 1]; //Second Value
            if (x > y){
                swap(values, j, j + 1); //Swap values
@@ -32,7 +31,7 @@ void draw(){
   i++;
 
   for(int i = 0; i < values.length; i++){
-      stroke(255,0,0);
+      stroke(255);
       line(i, height, i, height - values[i]);
   }
 }
