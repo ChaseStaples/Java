@@ -16,8 +16,8 @@ import java.util.List;
 public class TicTacToe{
 
 	//Creating ArrayList for each players position during the game
-	static ArrayList<Integer> playerPositions = new AraryList<Integer>();
-	static ArrayList<Integer> cpuPositions = new AraryList<Integer>();
+	static ArrayList<Integer> playerPositions = new ArrayList<Integer>();
+	static ArrayList<Integer> cpuPositions = new ArrayList<Integer>();
 
 	//Creating function to print gameboard from a double array
 	public static void printGameBoard(char[][] gameBoard){
@@ -30,7 +30,7 @@ public class TicTacToe{
 	}
 
 	//Creating function to put piece on the gameboard
-	public static void placementOfPiece(char[][] gameboard, position, user) {
+	public static void placementOfPiece(char[][] gameboard, int position, String user) {
 		char piece = " ";
 
 		//Creating Piecees for each player
@@ -44,31 +44,31 @@ public class TicTacToe{
 		}
 		switch(position) {
 			case 1:
-				gamboard[0][0] = piece; //Place piece in position 1 (Row 1 : Column 1)
+				gameboard[0][0] = piece; //Place piece in position 1 (Row 1 : Column 1)
 				break;
 			case 2:
-				gamboard[0][2] = piece; //Place piece in position 2 (Row 1 : Column 2)
+				gameboard[0][2] = piece; //Place piece in position 2 (Row 1 : Column 2)
 				break;
 			case 3:
-				gamboard[0][4] = piece; //Place piece in position 3 (Row 1 : Column 3)
+				gameboard[0][4] = piece; //Place piece in position 3 (Row 1 : Column 3)
 				break;
 			case 4:
-				gamboard[2][2] = piece; //Place piece in position 4 (Row 2 : Column 1)
+				gameboard[2][2] = piece; //Place piece in position 4 (Row 2 : Column 1)
 				break;
 			case 5:
-				gamboard[2][4] = piece; //Place piece in position 5 (Row 2 : Column 2)
+				gameboard[2][4] = piece; //Place piece in position 5 (Row 2 : Column 2)
 				break;
 			case 6:
-				gamboard[4][0] = piece; //Place piece in position 6 (Row 2 : Column 3)
+				gameboard[4][0] = piece; //Place piece in position 6 (Row 2 : Column 3)
 				break;
 			case 7:
-				gamboard[4][2] = piece; //Place piece in position 7 (Row 3 : Column 1)
+				gameboard[4][2] = piece; //Place piece in position 7 (Row 3 : Column 1)
 				break; 
 			case 8:
-				gamboard[4][4] = piece; //Place piece in position 8 (Row 3 : Column 2)
+				gameboard[4][4] = piece; //Place piece in position 8 (Row 3 : Column 2)
 				break;
 			case 9:
-				gamboard[0][0] = piece; //Place piece in position () (Row 3 : Column 3)
+				gameboard[0][0] = piece; //Place piece in position () (Row 3 : Column 3)
 				break;
 			default:
 				break;
@@ -82,7 +82,7 @@ public class TicTacToe{
 		//Creating all winning conditions in TicTacToe
 		List toprow       = Array.asList(1, 2, 3);
 		List middlerow    = Array.asList(4, 5, 6);
-		List bottomrow    = Array.asList(7, 8, 9);
+		List bottomRow    = Array.asList(7, 8, 9);
 		List leftColumn   = Array.asList(1, 4, 7);
 		List middleColumn = Array.asList(2, 5, 8);
 		List rightColumn  = Array.asList(3, 6, 9);
@@ -93,8 +93,8 @@ public class TicTacToe{
 		List<List> winnningCondition = new ArrayList<Integer>();
 		winnningCondition.add(toprow);
 		winnningCondition.add(middlerow);
-		winnningCondition.add(leftrow);
-		winnningCondition.add(topColumn);
+		winnningCondition.add(bottomRow);
+		winnningCondition.add(rightColumn);
 		winnningCondition.add(middleColumn);
 		winnningCondition.add(leftColumn);
 		winnningCondition.add(crossLR);
@@ -108,7 +108,7 @@ public class TicTacToe{
 			else if(playerPositions.containsAll(i)) {
 				return "CPU Wins! Sorry you have lost!";
 			}
-			else if(playerPositions.size() + cpuPositions.size())
+			else if(playerPositions.size() == cpuPositions.size())
 				return "It's a TIE!"
 		}
 
@@ -153,12 +153,12 @@ public class TicTacToe{
 
 			//Randomly generating a number for the CPU: Fake AI
 			Random randomNumber = new Random();
-			int cpuPosition = ranomNumber.nextInt(9) + 1;
+			int cpuPosition = randomNumber.nextInt(9) + 1;
 			//CPU turn and doesn't equal position already picked
-			while(playerPositions.contain(cpuPosition) || cpuPositions.contain(cpuPositions{
-				cpuPosition = ranomNumber.nextInt(9) + 1;
+			while(playerPositions.contains(cpuPosition) || cpuPositions.contains(cpuPositions{
+				cpuPosition = randomNumber.nextInt(9) + 1;
 			}
-			placementOfPiece(gameboard, piecePosition, "CPU");
+			placementOfPiece(gameboard, cpuPosition, "CPU");
 
 			printGameBoard(gameboard);
 
