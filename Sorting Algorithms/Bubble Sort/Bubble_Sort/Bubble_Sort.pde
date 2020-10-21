@@ -3,7 +3,8 @@ int i = 0;
 int j = 0;
 
 void setup(){
-  size(1500, 1000);
+  //size(2000, 1000);
+  fullScreen();
   values = new float[width];
   for (int i = 0; i < values.length; i++){
       values[i] = noise(i/100.0) * height;
@@ -31,7 +32,7 @@ void draw(){
   i++;
 
   for(int i = 0; i < values.length; i++){
-      stroke(255);
+      stroke(0,255,0);
       line(i, height, i, height - values[i]);
   }
 }
