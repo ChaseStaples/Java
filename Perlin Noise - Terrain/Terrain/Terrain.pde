@@ -1,8 +1,8 @@
 //Global variables
 int columns, rows;
 int scale = 20;
-int w = 5000;
-int h = 3000;
+int w = 3500;
+int h = 1500;
 
 float flying = 0;
 
@@ -36,7 +36,7 @@ void draw(){
   noFill();
   
   //Centering grid
-  translate(width/2, height/2+100);
+  translate(width/2, height/2-250);
   rotateX(PI/3);
   translate(-w/2, -h/2);
   
