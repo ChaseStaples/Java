@@ -9,33 +9,36 @@ import javax.swing.JTextField;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author S528345
  */
 public class GUI_Login {
-    
-    public static void Prompt_GUI(){
-        
+
+    public static void Prompt_GUI() {
+
         JPanel panel = new JPanel();
         JFrame frame = new JFrame();
-        frame.setSize(100,100);
+        frame.setSize(100, 100);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);
-        
+
         panel.setLayout(null);
-        
-        JLabel label = new JLabel("User");
-        label.setBounds(10,20,80,25);
-        panel.add(label);
-        
+
+        JLabel userLabel = new JLabel("User");
+        userLabel.setBounds(20, 20, 80, 25);
+        panel.add(userLabel);
+
         JTextField userText = new JTextField(20);
-        userText.setBounds(100,20,165,25);
+        userText.setBounds(100, 20, 165, 25);
+        panel.add(userText);
         
-        
+        JLabel passwordLabel = new JLabel("User");
+        passwordLabel.setBounds(20, 50, 80, 25);
+        panel.add(passwordLabel);
+
         frame.setVisible(true);
-        
+
     }
 
     /**
