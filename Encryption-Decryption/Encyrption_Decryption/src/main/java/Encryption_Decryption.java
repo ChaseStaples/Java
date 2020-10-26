@@ -13,6 +13,7 @@
  */
 
 import java.util.*;
+import java.math.*;
 
 
 public class Encryption_Decryption {
@@ -22,9 +23,15 @@ public class Encryption_Decryption {
     private static String message = "";
     private static String encrypted_Message = "";
     private static String decrypted_Message = "";
+    private static int x = 0,y = 0,z = 0;
     
-    public static String Encrypt(){
-        //
+    public static String Encrypt(int x, int y, int z){
+        
+        if(x == 0|| y == 0 || z == 0){
+            System.out.println("Key has not been generated yet");
+            return "";
+        }
+        
         System.out.println("Message to be encrypted:");
         Scanner newMess = new Scanner(System.in);
         message = newMess.nextLine();
@@ -32,6 +39,10 @@ public class Encryption_Decryption {
         
         char[] encrypt = message.toCharArray();
         String newMessage = "";
+        
+        if(x == 0|| y == 0 || z == 0){
+            System.out.println("Key has not been generated yet");
+        }
          
         for(int i = 0; i < encrypt.length; i++){
             if(encrypt[i] == ' '){
@@ -39,22 +50,30 @@ public class Encryption_Decryption {
                 newMessage += encrypt[i];
             }
             else if(i % 2 == 0){
-                encrypt[i] += 2;
+                encrypt[i] += x;
                 newMessage += encrypt[i];
             }
             else if(i % 5 == 0){
-                encrypt[i] += 5;
+                encrypt[i] += y;
                 newMessage += encrypt[i];
             }
             else{
-                encrypt[i]+= 2;
+                encrypt[i]+= z;
                 newMessage += encrypt[i];
             }
         }
         return newMessage;
     }
-    public static String Decrypt(String message){
+    public static String Decrypt(String message, int x, int y, int z){
     
+        if(x == 0|| y == 0 || z == 0){
+            System.out.println("Key has not been generated yet");
+            return "";
+        }
+        if(message.equals("")){
+            System.out.println("Message has not been generated");
+            return "";
+        }
         System.out.println("Message to be decrypted: " + message);
         
         char[] encrypt = message.toCharArray();
@@ -66,15 +85,15 @@ public class Encryption_Decryption {
                 newMessage += encrypt[i];
             }
             else if(i % 2 == 0){
-                encrypt[i] -= 2;
+                encrypt[i] -= x;
                 newMessage += encrypt[i];
             }
             else if(i % 5 == 0){
-                encrypt[i] -= 5;
+                encrypt[i] -= y;
                 newMessage += encrypt[i];
             }
             else{
-                encrypt[i] -= 2;
+                encrypt[i] -= z;
                 newMessage += encrypt[i];
             }
         }
@@ -83,13 +102,15 @@ public class Encryption_Decryption {
     
     public static void Prompt_Credentials(){
         
-       Scanner newUser = new Scanner(System.in);
-       System.out.print("Username: "); 
+       Scanner newUser = new Scanner(System.in); 
+       System.out.println("Username: "); 
        username = newUser.nextLine(); 
+       System.out.println();
        
-       Scanner newPassword = new Scanner(System.in);
+       Scanner newPass = new Scanner(System.in);
        System.out.println("Password: ");
-       password = newPassword.nextLine();
+       password = newPass.nextLine();
+       System.out.println();
        
     }
     public static String Prompt_Menu(){
@@ -114,9 +135,15 @@ public class Encryption_Decryption {
         return choice;
     }
     
-    public static String Generate_String(){
-        
-        return "";
+    public static int Generate_Key(){
+        System.out.println("Generating your key ....");
+        Random random = new Random();
+        String space = " ";
+        x = random.nextInt(9); if(x == 0){x += 3;}
+        y = random.nextInt(9); if(y == 0){x += 5;}
+        z = random.nextInt(9); if(z == 0){x += 7;}
+        System.out.println(x + space + y + space + z);
+        return 0;
     }
     
     public static String Get_Username(){
@@ -133,12 +160,14 @@ public class Encryption_Decryption {
      * @param args
      */
     public static void main(String[] args) {
+        System.out.println("Welcome to the message center, you can encrypt or decrypt messages");
+        System.out.println("Don't forget to generate your encryption key first!");
         Prompt_Credentials();
         String choice = Prompt_Menu();
         do{
            switch(choice){
                 case "1" -> {
-                    encrypted_Message = Encrypt();
+                    encrypted_Message = Encrypt(x,y,z);
                     System.out.println(" Your encrypted message is ");
                     System.out.println("===========================");
                     System.out.println(encrypted_Message);
@@ -147,11 +176,17 @@ public class Encryption_Decryption {
                     break;
                 }
                 case "2" -> {
-                    decrypted_Message = Decrypt(encrypted_Message);
+                    decrypted_Message = Decrypt(encrypted_Message,x,y,z);
+                    System.out.println();
+                    System.out.println(" Your decrypted message is ");
+                    System.out.println("===========================");
+                    System.out.println(decrypted_Message);
+                    System.out.println("===========================");
+                    System.out.println();
                     break;
                 }
                 case "3" -> {
-                    Generate_String();
+                    Generate_Key();
                     break;
                 }
                 case "4" -> {
