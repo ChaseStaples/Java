@@ -19,33 +19,83 @@ public class Encryption_Decryption {
     
     private static String username = "";
     private static String password = "";
+    private static String message = "";
+    private static String encrypted_Message = "";
+    private static String decrypted_Message = "";
     
     public static String Encrypt(){
-    
-        return "";
+        //
+        System.out.println("Message to be encrypted:");
+        Scanner newMess = new Scanner(System.in);
+        message = newMess.nextLine();
+        System.out.println();
+        
+        char[] encrypt = message.toCharArray();
+        String newMessage = "";
+         
+        for(int i = 0; i < encrypt.length; i++){
+            if(encrypt[i] == ' '){
+                encrypt[i] = ' ';
+                newMessage += encrypt[i];
+            }
+            else if(i % 2 == 0){
+                encrypt[i] += 2;
+                newMessage += encrypt[i];
+            }
+            else if(i % 5 == 0){
+                encrypt[i] += 5;
+                newMessage += encrypt[i];
+            }
+            else{
+                encrypt[i]+= 2;
+                newMessage += encrypt[i];
+            }
+        }
+        return newMessage;
     }
-    public static String Decrypt(){
+    public static String Decrypt(String message){
     
-        return "";
+        System.out.println("Message to be decrypted: " + message);
+        
+        char[] encrypt = message.toCharArray();
+        String newMessage = "";
+         
+        for(int i = 0; i < encrypt.length; i++){
+            if(encrypt[i] == ' '){
+                encrypt[i] = ' ';
+                newMessage += encrypt[i];
+            }
+            else if(i % 2 == 0){
+                encrypt[i] -= 2;
+                newMessage += encrypt[i];
+            }
+            else if(i % 5 == 0){
+                encrypt[i] -= 5;
+                newMessage += encrypt[i];
+            }
+            else{
+                encrypt[i] -= 2;
+                newMessage += encrypt[i];
+            }
+        }
+        return newMessage;
     }
     
     public static void Prompt_Credentials(){
         
-       System.out.print("Username: ");
        Scanner newUser = new Scanner(System.in);
-       username = newUser.nextLine();
-       System.out.println();
+       System.out.print("Username: "); 
+       username = newUser.nextLine(); 
        
-       System.out.print("Password: ");
        Scanner newPassword = new Scanner(System.in);
+       System.out.println("Password: ");
        password = newPassword.nextLine();
-       System.out.println();
        
     }
     public static String Prompt_Menu(){
     
         
-        
+        System.out.println();
         System.out.println("     * * * Menu * * *    ");
         System.out.println("==========================");
         System.out.println("1. To Encrypt your message");
@@ -54,8 +104,9 @@ public class Encryption_Decryption {
         System.out.println("4. To Check Username and Password");
         System.out.println("'Quit' to exit menu");
         System.out.println("==========================");
+        System.out.println();
         
-        System.out.print("Enter your choice here: ");
+        System.out.println("Enter your choice here: ");
         Scanner options = new Scanner(System.in);
         String choice = options.nextLine();
         System.out.println();
@@ -64,6 +115,8 @@ public class Encryption_Decryption {
     }
     
     public static String Generate_String(){
+        
+        return "";
     }
     
     public static String Get_Username(){
@@ -80,16 +133,21 @@ public class Encryption_Decryption {
      * @param args
      */
     public static void main(String[] args) {
-        
+        Prompt_Credentials();
         String choice = Prompt_Menu();
         do{
            switch(choice){
                 case "1" -> {
-                    Encrypt();
+                    encrypted_Message = Encrypt();
+                    System.out.println(" Your encrypted message is ");
+                    System.out.println("===========================");
+                    System.out.println(encrypted_Message);
+                    System.out.println("===========================");
+                    System.out.println();
                     break;
                 }
                 case "2" -> {
-                    Decrypt();
+                    decrypted_Message = Decrypt(encrypted_Message);
                     break;
                 }
                 case "3" -> {
