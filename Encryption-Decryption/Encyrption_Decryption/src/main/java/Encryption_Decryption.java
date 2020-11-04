@@ -25,7 +25,7 @@ public class Encryption_Decryption {
     private static String decrypted_Message = "";
     private static int x = 0,y = 0,z = 0;
     
-    public static String Encrypt(int x, int y, int z){
+    static String Encrypt(int x, int y, int z){
         
         if(x == 0|| y == 0 || z == 0){
             System.out.println("Key has not been generated yet");
@@ -64,7 +64,7 @@ public class Encryption_Decryption {
         }
         return newMessage;
     }
-    public static String Decrypt(String message, int x, int y, int z){
+    static String Decrypt(String message, int x, int y, int z){
     
         if(x == 0|| y == 0 || z == 0){
             System.out.println("Key has not been generated yet");
@@ -100,7 +100,7 @@ public class Encryption_Decryption {
         return newMessage;
     }
     
-    public static void Prompt_Credentials(){
+    static void Prompt_Credentials(){
         
        Scanner newUser = new Scanner(System.in); 
        System.out.println("Username: "); 
@@ -113,7 +113,7 @@ public class Encryption_Decryption {
        System.out.println();
        
     }
-    public static String Prompt_Menu(){
+    static String Prompt_Menu(){
     
         
         System.out.println();
@@ -135,7 +135,7 @@ public class Encryption_Decryption {
         return choice;
     }
     
-    public static int Generate_Key(){
+    static int Generate_Key(){
         System.out.println("Generating your key ....");
         Random random = new Random();
         String space = " ";
@@ -146,11 +146,11 @@ public class Encryption_Decryption {
         return 0;
     }
     
-    public static String Get_Username(){
+    static String Get_Username(){
         return username;
     }
     
-    public static String Get_Password(){
+    static String Get_Password(){
         return password;
     }
     
@@ -173,6 +173,7 @@ public class Encryption_Decryption {
                     System.out.println(encrypted_Message);
                     System.out.println("===========================");
                     System.out.println();
+                    choice = Prompt_Menu();
                     break;
                 }
                 case "2" -> {
@@ -183,23 +184,31 @@ public class Encryption_Decryption {
                     System.out.println(decrypted_Message);
                     System.out.println("===========================");
                     System.out.println();
+                    choice = Prompt_Menu();
                     break;
                 }
                 case "3" -> {
                     Generate_Key();
+                    choice = Prompt_Menu();
                     break;
                 }
                 case "4" -> {
                     System.out.println("Your username is: " + Get_Username());
                     System.out.println("Your password is: " + Get_Password());
+                    choice = Prompt_Menu();
                     break;
                 } 
+                case "Quit" -> {
+                    System.out.println("Goodbye!");
+                    choice = "quit";
+                    break;
+                }
                 default -> {
                     System.out.println("Invald input! Enter a choice!");
+                    choice = Prompt_Menu();
                     break;
                 }
            }
-           choice = Prompt_Menu();
         } while(!"quit".equals(choice));
     }
 }
