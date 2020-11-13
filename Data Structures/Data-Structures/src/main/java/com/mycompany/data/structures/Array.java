@@ -5,6 +5,8 @@
  */
 package com.mycompany.data.structures;
 
+import static java.lang.constant.ConstantDescs.NULL;
+
 /**
  *
  * @author Chase Staples
@@ -14,14 +16,29 @@ package com.mycompany.data.structures;
  * Delete = O(n)
  * Arrays are static in size
  */
-public class Array {
+@SuppressWarnings("unchecked")
+public class Array{
     private int[] items;
     private int count;
     
     public Array(int length){
+        if(length < 0){ 
+            throw new IllegalArgumentException("Illegal Capacity: " + length);
+        }
         items = new int[length];
         
     }
+    public void clear(){
+        for(int i = 0; i < count; i++){
+            items[i] = (int) NULL;
+        }
+        count = 0;
+    }
+    public int size() {return count;}
+    public boolean isEmpty() {return size() == 0;}
+    
+    public int get(int index){ return items[index];}
+    public void set(int index, int element) {items[index] = element;}
     
     //Print statement for array
     public void print(){
@@ -52,7 +69,7 @@ public class Array {
     public void removeAt(int index){
         //Validate the index
         if(index < 0 || index >= count){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Illegal Index: " + index);
         }
         
         /**Shift the items to the left
